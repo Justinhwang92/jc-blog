@@ -29,7 +29,7 @@ router.post("/register", async (req, res) => {
 // Login
 router.post("/login", async (req, res) => {
   try {
-    // find user by email
+    // find user by username
     const user = await User.findOne({
       username: req.body.username,
     });
