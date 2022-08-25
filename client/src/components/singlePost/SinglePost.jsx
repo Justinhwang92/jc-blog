@@ -1,5 +1,5 @@
 import "./singlePost.css";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -9,6 +9,7 @@ export default function SinglePost() {
   const [post, setPost] = useState({});
 
   useEffect(() => {
+    // fetch a single post from server
     const getPost = async () => {
       const res = await axios.get("/posts/" + path);
       setPost(res.data);
@@ -18,11 +19,12 @@ export default function SinglePost() {
 
   return (
     <div className="singlePost">
+      {/* Photo */}
       <div className="singlePostWrapper">
         {post.photo && (
           <img className="singlePostImg" src={post.photo} alt="" />
         )}
-
+        {/* Title */}
         <h1 className="singlePostTitle">
           {post.title}
           <div className="singlePostEdit">
@@ -31,12 +33,17 @@ export default function SinglePost() {
           </div>
         </h1>
         <div className="singlePostInfo">
+          {/* Author */}
           <span>
             Author:
-            <b className="singlePostAuthor">{post.username}</b>
+            <Link to={`/?user=${post.username}`} className="link">
+              <b className="singlePostAuthor">{post.username}</b>
+            </Link>
           </span>
+          {/* Date */}
           <span>{new Date(post.createdAt).toLocaleDateString()}</span>
         </div>
+        {/* Description */}
         <p className="singlePostDesc">{post.desc}</p>
       </div>
     </div>
