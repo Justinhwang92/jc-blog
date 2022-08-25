@@ -59,3 +59,8 @@
   color: white;
   border-radius: 10px;
 }
+
+.registerError {
+  color: red;
+  margin-top: 10px;
+}
