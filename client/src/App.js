@@ -1,5 +1,5 @@
 import SinglePost from "./components/singlePost/SinglePost";
-import TopBar from "./components/topbar/TopBar";
+import TopBar from "./components/topBar/TopBar";
 import Homepage from "./pages/homepage/Homepage";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
@@ -9,6 +9,7 @@ import Write from "./pages/write/Write";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
+import Single from "./pages/single/Single";
 
 function App() {
   const { user } = useContext(Context);
@@ -30,7 +31,7 @@ function App() {
           path="/settings"
           element={user ? <Settings /> : <Register />}
         />
-        <Route exact path="/post/:postId" element={<SinglePost />} />
+        <Route exact path="/post/:postId" element={<Single />} />
       </Routes>
     </Router>
   );
