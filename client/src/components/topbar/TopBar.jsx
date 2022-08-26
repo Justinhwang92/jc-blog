@@ -5,6 +5,7 @@ import { Context } from "../../context/Context";
 
 export default function TopBar() {
   const { user, dispatch } = useContext(Context);
+  const PF = "http://localhost:4000/images/";
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -12,12 +13,14 @@ export default function TopBar() {
 
   return (
     <div className="top">
+      {/* Social media */}
       <div className="topLeft">
         <i className="topIcon fab fa-facebook-square"></i>
         <i className="topIcon fab fa-instagram-square"></i>
         <i className="topIcon fab fa-pinterest-square"></i>
         <i className="topIcon fab fa-twitter-square"></i>
       </div>
+      {/* Menu */}
       <div className="topCenter">
         <ul className="topList">
           <li className="topListItem">
@@ -47,7 +50,9 @@ export default function TopBar() {
       </div>
       <div className="topRight">
         {user ? (
-          <img className="topImg" src={user.profilePicture} alt="" />
+          <Link to="/settings">
+            <img className="topImg" src={PF + user.profilePicture} alt="" />
+          </Link>
         ) : (
           <ul className="topList">
             <li className="topListItem">
