@@ -43,13 +43,14 @@
 .sidebarList {
   list-style-type: none;
   margin-bottom: 30px;
+  display: flex;
 }
 
 .sidebarListItem {
-  display: inline-block;
-  width: 50%;
+  display: flex;
   margin-top: 15px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .sidebarSocial {

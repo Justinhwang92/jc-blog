@@ -1,13 +1,13 @@
 const router = require("express").Router();
-const Category = require("../models/Category");
+const Tag = require("../models/Tag");
 
 // Create
 router.post("/", async (req, res) => {
-  const newCategory = new Category(req.body);
+  const newTag = new Tag(req.body);
   try {
-    // save category
-    const savedCategory = await newCategory.save();
-    res.status(200).json(savedCategory);
+    // save Tag
+    const savedTag = await newTag.save();
+    res.status(200).json(savedTag);
   } catch (error) {
     // server error
     res.status(500).send(error);
@@ -17,9 +17,9 @@ router.post("/", async (req, res) => {
 // Get
 router.get("/", async (req, res) => {
   try {
-    // get all categories
-    const categories = await Category.find();
-    res.status(200).json(categories);
+    // get all tags
+    const tags = await Tag.find();
+    res.status(200).json(tags);
   } catch (error) {
     res.status(500).send(error);
   }

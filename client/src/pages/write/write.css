@@ -49,6 +49,11 @@
   outline-style: none;
 }
 
+.writeTags {
+  font-size: 18px;
+  font-family: inherit;
+}
+
 .writeText {
   width: 70vw;
   height: 100vh;

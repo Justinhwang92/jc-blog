@@ -12,6 +12,7 @@ export default function SinglePost() {
   const { user } = useContext(Context);
 
   const [title, setTitle] = useState("");
+  const [tags, setTags] = useState([]);
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
@@ -92,6 +93,12 @@ export default function SinglePost() {
               <b className="singlePostAuthor">{post.username}</b>
             </Link>
           </span>
+          {post.tags?.length > 0 &&
+            post.tags.map((tag) => (
+              <Link to={`/?tag=${tag}`} className="link" key={post._id}>
+                <span className="postCat">{tag}</span>
+              </Link>
+            ))}
           {/* Date */}
           <span>{new Date(post.createdAt).toLocaleDateString()}</span>
         </div>

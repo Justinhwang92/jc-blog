@@ -9,10 +9,12 @@ export default function Post({ post }) {
       {/* Image */}
       {post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
       <div className="postInfo">
-        {/* Categories */}
+        {/* Tags */}
         <div className="postCats">
-          {post.categories.map((cat) => (
-            <span className="postCat">{cat.name}</span>
+          {post.tags.map((tag) => (
+            <Link to={`/?tag=${tag}`} className="link" key={post._id}>
+              <span className="postCat">{tag}</span>
+            </Link>
           ))}
         </div>
         {/* Title */}

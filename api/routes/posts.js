@@ -1,10 +1,16 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const Post = require("../models/Post");
+const Tag = require("../models/Tag");
 
 // Create
 router.post("/", async (req, res) => {
-  const newPost = new Post(req.body);
+  const { title, desc, photo, username } = req.body;
+  const tags = req.body.tags?.slice();
+
+  console.log(tags);
+  const newPost = new Post({ title, desc, photo, username, tags });
+  // const newPost = new Post(req.body);
   try {
     // save post
     const savedPost = await newPost.save();
@@ -76,17 +82,17 @@ router.get("/:id", async (req, res) => {
 // Get all
 router.get("/", async (req, res) => {
   const username = req.query.user;
-  const catName = req.query.cat;
+  const tagName = req.query.tag;
   try {
     let posts;
     if (username) {
       // find posts by username
       // usage: localhost:4000/api/posts?user=testUsername
       posts = await Post.find({ username }); // same as { username: username }
-    } else if (catName) {
-      // find posts by category
-      // usage: localhost:4000/api/posts?cat=testCategory
-      posts = await Post.find({ categories: { $in: [catName] } });
+    } else if (tagName) {
+      // find posts by tag
+      // usage: localhost:4000/api/posts?tag=testTag
+      posts = await Post.find({ tags: { $in: [tagName] } });
     } else {
       // find all posts
       posts = await Post.find();

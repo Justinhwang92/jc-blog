@@ -7,6 +7,7 @@ export default function Write() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
+  const [tags, setTags] = useState([]);
   const { user } = useContext(Context);
 
   const handleSubmit = async (e) => {
@@ -45,12 +46,14 @@ export default function Write() {
           <label htmlFor="fileInput">
             <i className="writeIcon fas fa-plus"></i>
           </label>
+          {/* Image */}
           <input
             type="file"
             id="fileInput"
             style={{ display: "none" }}
             onChange={(e) => setFile(e.target.files[0])}
           />
+          {/* Title */}
           <input
             type="text"
             placeholder="Title"
@@ -59,6 +62,16 @@ export default function Write() {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
+        {/* Tag */}
+        <div className="writeFormGroup">
+          <input
+            type="text"
+            placeholder="Tags"
+            className="writeInput writeTags"
+            onChange={(e) => setTags(e.target.value.split(","))}
+          />
+        </div>
+        {/* Description */}
         <div className="writeFormGroup">
           <textarea
             placeholder="Tell your story..."
@@ -67,6 +80,7 @@ export default function Write() {
             onChange={(e) => setDesc(e.target.value)}
           ></textarea>
         </div>
+
         <button className="writeSubmit" type="submit">
           Publish
         </button>
