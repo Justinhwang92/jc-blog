@@ -93,12 +93,14 @@ export default function SinglePost() {
               <b className="singlePostAuthor">{post.username}</b>
             </Link>
           </span>
-          {post.tags?.length > 0 &&
-            post.tags.map((tag) => (
-              <Link to={`/?tag=${tag}`} className="link" key={post._id}>
-                <span className="postCat">{tag}</span>
-              </Link>
-            ))}
+          <div>
+            {post.tags?.length > 0 &&
+              post.tags.map((tag) => (
+                <Link to={`/?tag=${tag.name}`} className="link" key={tag._id}>
+                  <span className="postCat">{tag.name}</span>
+                </Link>
+              ))}
+          </div>
           {/* Date */}
           <span>{new Date(post.createdAt).toLocaleDateString()}</span>
         </div>

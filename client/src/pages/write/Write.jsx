@@ -16,6 +16,7 @@ export default function Write() {
       username: user.username,
       title,
       desc,
+      tags,
     };
     if (file) {
       // if there is a file, add it to the newPost object

@@ -12,8 +12,8 @@ export default function Post({ post }) {
         {/* Tags */}
         <div className="postCats">
           {post.tags.map((tag) => (
-            <Link to={`/?tag=${tag}`} className="link" key={post._id}>
-              <span className="postCat">{tag}</span>
+            <Link to={`/?tag=${tag.name}`} className="link" key={tag._id}>
+              <span className="postCat">{tag.name}</span>
             </Link>
           ))}
         </div>

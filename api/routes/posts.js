@@ -4,14 +4,28 @@ const Post = require("../models/Post");
 const Tag = require("../models/Tag");
 
 // Create
+
+// Usage
+// localhost:4000/api/posts
+// {
+// "title": "test4",
+// "desc": "test4",
+// "photo": "",
+// "username": "justin",
+// "tags": ["coding", "react"]
+// }
 router.post("/", async (req, res) => {
   const { title, desc, photo, username } = req.body;
-  const tags = req.body.tags?.slice();
 
-  console.log(tags);
+  const tags = req.body.tags?.slice().map((tag) => {
+    return new Tag({ name: tag });
+  });
+
   const newPost = new Post({ title, desc, photo, username, tags });
   // const newPost = new Post(req.body);
   try {
+    // save tags
+    const savedTags = await tags.map((tag) => tag.save());
     // save post
     const savedPost = await newPost.save();
     res.status(200).json(savedPost);
@@ -83,6 +97,7 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   const username = req.query.user;
   const tagName = req.query.tag;
+
   try {
     let posts;
     if (username) {
@@ -92,7 +107,10 @@ router.get("/", async (req, res) => {
     } else if (tagName) {
       // find posts by tag
       // usage: localhost:4000/api/posts?tag=testTag
-      posts = await Post.find({ tags: { $in: [tagName] } });
+      posts = await Post.find({
+        "tags.name": tagName,
+      });
+      // posts = await Post.find({ tags: { $in: [tagName] } });
     } else {
       // find all posts
       posts = await Post.find();
