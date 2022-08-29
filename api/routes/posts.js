@@ -17,23 +17,49 @@ const Tag = require("../models/Tag");
 router.post("/", async (req, res) => {
   const { title, desc, photo, username } = req.body;
 
-  const tags = req.body.tags?.slice().map((tag) => {
-    return new Tag({ name: tag });
-  });
-
-  const newPost = new Post({ title, desc, photo, username, tags });
-  // const newPost = new Post(req.body);
-  try {
-    // save tags
-    const savedTags = await tags.map((tag) => tag.save());
-    // save post
-    const savedPost = await newPost.save();
-    res.status(200).json(savedPost);
-  } catch (error) {
-    // server error
-    res.status(500).send(error);
+  if (req.body.tags) {
+    const tags = createTags(req.body.tags.slice()).then(async (tags) => {
+      const newPost = new Post({ title, desc, photo, username, tags });
+      try {
+        // save Post
+        const savedPost = await newPost.save();
+        res.status(200).json(savedPost);
+      } catch (error) {
+        // server error
+        res.status(500).send(error);
+      }
+    });
+  } else {
+    const newPost = new Post({ title, desc, photo, username });
+    try {
+      // save Post
+      const savedPost = await newPost.save();
+      res.status(200).json(savedPost);
+    } catch (error) {
+      // server error
+      res.status(500).send(error);
+    }
   }
 });
+
+const createTags = async (tags) => {
+  const newTags = tags.map(async (tag) => {
+    // Check if tag exists
+    const foundTag = await Tag.findOne({ name: tag });
+    if (foundTag) {
+      return foundTag;
+    } else {
+      // Create tag if it doesn't exist
+      try {
+        const newTag = await Tag.create({ name: tag });
+        return newTag;
+      } catch (error) {
+        res.status(500).send(error);
+      }
+    }
+  });
+  return Promise.all(newTags);
+};
 
 // Update
 router.put("/:id", async (req, res) => {

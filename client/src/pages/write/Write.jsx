@@ -69,7 +69,7 @@ export default function Write() {
             type="text"
             placeholder="Tags"
             className="writeInput writeTags"
-            onChange={(e) => setTags(e.target.value.split(","))}
+            onChange={(e) => setTags(e.target.value.split(", "))}
           />
         </div>
         {/* Description */}
