@@ -34,16 +34,31 @@
   margin-top: 15px;
   width: 250px;
   height: 250px;
+  border-radius: 7px;
 }
 
 .sidebarItem > p {
-  padding: 30px;
+  padding: 20px;
+  text-align: center;
+  font-family: "Varela Round", sans-serif;
+  font-size: 12px;
+  line-height: 19px;
+  color: #222222;
+  font-weight: 700;
 }
 
 .sidebarList {
   list-style-type: none;
   margin-bottom: 30px;
   display: flex;
+  flex-wrap: wrap;
+  padding: inherit;
+
+  font-family: "Varela Round", sans-serif;
+  font-size: 12px;
+  line-height: 19px;
+  color: #222222;
+  font-weight: 700;
 }
 
 .sidebarListItem {

@@ -7,7 +7,11 @@ export default function Post({ post }) {
   return (
     <div className="post">
       {/* Image */}
-      {post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
+      {post.photo && (
+        <Link to={`/post/${post._id}`} className="link">
+          <img className="postImg" src={PF + post.photo} alt="" />
+        </Link>
+      )}
       <div className="postInfo">
         {/* Tags */}
         <div className="postCats">
@@ -25,7 +29,10 @@ export default function Post({ post }) {
         <hr />
         {/* Date */}
         <span className="postDate">
-          {new Date(post.createdAt).toDateString()}
+          {new Date(post.createdAt).toDateString()} by{" "}
+          <Link to={`/?user=${post.username}`} className="link">
+            {post.username}
+          </Link>
         </span>
       </div>
       {/* Description */}

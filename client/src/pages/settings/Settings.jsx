@@ -56,7 +56,13 @@ export default function Settings() {
           <label>Profile Picture</label>
           <div className="settingsPP">
             <img
-              src={file ? URL.createObjectURL(file) : PF + user.profilePicture}
+              src={
+                file
+                  ? URL.createObjectURL(file)
+                  : user.profilePicture
+                  ? PF + user.profilePicture
+                  : "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+              }
               alt=""
             />
             <label htmlFor="fileInput">

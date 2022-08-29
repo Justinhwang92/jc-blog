@@ -20,11 +20,11 @@ export default function Sidebar() {
       <div className="sidebarItem">
         {/* About me */}
         <span className="sidebarTitle">ABOUT ME</span>
-        <img
-          src="https://images.unsplash.com/photo-1657567718275-9a2d95760e76?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-          alt=""
-        />
-        <p>about me description placeholder</p>
+        <img src="http://localhost:4000/images/home.jpg" alt="" />
+        <p>
+          Full Stack Developer | GMU ’22 | JavaScript, TypeScript, MongoDB,
+          ExpressJS, ReactJS, Node JS
+        </p>
       </div>
       <div className="sidebarItem">
         {/* Tags */}
