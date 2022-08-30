@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 import Single from "./pages/single/Single";
+import About from "./pages/about/About";
 
 function App() {
   const { user } = useContext(Context);
@@ -32,6 +33,7 @@ function App() {
           element={user ? <Settings /> : <Register />}
         />
         <Route exact path="/post/:postId" element={<Single />} />
+        <Route exact path="/about" element={<About />} />
       </Routes>
     </Router>
   );
